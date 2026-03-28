@@ -16,7 +16,7 @@ void FStarshipHeroModule::StartupModule()
 		"Tools", // Extension hook in the Main Tools menu
 		EExtensionHook::After,
 		nullptr,
-		FMenuExtensionDelegate::CreateRaw(this, &FStarshipHeroModule::FillToolsMenu)
+		FMenuExtensionDelegate::CreateRaw(this, &FStarshipHeroModule::AddMenuEntry)
 	);
 
 	LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
@@ -26,27 +26,22 @@ void FStarshipHeroModule::ShutdownModule()
 {
 }
 
-void FStarshipHeroModule::FillToolsMenu(FMenuBuilder& Builder)
-{
-	Builder.AddSubMenu(
-		LOCTEXT("ToolsSubmenu", "Tools"),
-		LOCTEXT("ToolsSubmenuDescription", "External tools and helpers"),
-		FNewMenuDelegate::CreateRaw(this, &FStarshipHeroModule::AddMenuEntry)
-	);
-}
-
 void FStarshipHeroModule::AddMenuEntry(FMenuBuilder& Builder)
 {
-	Builder.AddMenuEntry(
-		LOCTEXT("OpenStarshipSuite", "Open StarshipSuite"),
-		LOCTEXT("OpenStarshipSuiteDescription", "Launches the built-in Starship Test Suite"),
-		FSlateIcon(),
-		FUIAction(FExecuteAction::CreateLambda([]() {
-#if !UE_BUILD_SHIPPING
+	
+	FUIAction OpenStarshipSuiteAction;
+	OpenStarshipSuiteAction.ExecuteAction = FExecuteAction::CreateLambda([this]()
+		{
 			RestoreStarshipSuite();
-#endif
-		}))
-	);
+		});
+
+	Builder.AddMenuEntry(
+		LOCTEXT("OpenStarshipSuite", "Starship Test Suite"),
+		LOCTEXT("OpenStarshipSuiteDesc", "Opens the Starship UX test suite."),
+		FSlateIcon(),
+		OpenStarshipSuiteAction,
+		NAME_None,
+		EUserInterfaceActionType::Button);
 }
 
 #undef LOCTEXT_NAMESPACE

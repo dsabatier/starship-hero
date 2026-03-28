@@ -13,5 +13,4 @@ public:
 	
 	/** This function will be bound to our command. */
 	void AddMenuEntry(FMenuBuilder& Builder);
-	void FillToolsMenu(FMenuBuilder& Builder);
 };
