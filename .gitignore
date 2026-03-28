@@ -1,0 +1,20 @@
+# Unreal Engine Plugin GitIgnore
+Binaries/
+Build/
+Intermediate/
+Saved/
+DerivedDataCache/
+FileOpenOrder/
+Obj/
+*.pdb
+*.obj
+*.suo
+*.sln
+*.sdf
+*.opensdf
+*.VC.opendb
+*.vs
+.vs/
+*.user
+*.userprefs
+*.DS_Store
