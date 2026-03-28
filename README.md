@@ -5,7 +5,10 @@ A lightweight Unreal Engine editor plugin that adds a direct shortcut to the bui
 ## Installation
 
 1. Create a `Plugins` folder in your project's root directory (if it doesn't already exist).
-2. Clone or move the `SlateReferenceHero` folder into the `Plugins` directory.
+2. Clone or move the `StarshipHero` folder into the `Plugins` directory. 
+
+`git clone https://github.com/dsabatier/starship-hero.git ./StarshipHero`
+
    ```
    YourProject/
    ├── Content/

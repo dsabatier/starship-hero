@@ -13,10 +13,10 @@ void FStarshipHeroModule::StartupModule()
 	TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
 
 	MenuExtender->AddMenuExtension(
-		"WindowLayout", // Extension hook
+		"Tools", // Extension hook in the Main Tools menu
 		EExtensionHook::After,
 		nullptr,
-		FMenuExtensionDelegate::CreateRaw(this, &FStarshipHeroModule::AddMenuEntry)
+		FMenuExtensionDelegate::CreateRaw(this, &FStarshipHeroModule::FillToolsMenu)
 	);
 
 	LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
@@ -26,11 +26,20 @@ void FStarshipHeroModule::ShutdownModule()
 {
 }
 
+void FStarshipHeroModule::FillToolsMenu(FMenuBuilder& Builder)
+{
+	Builder.AddSubMenu(
+		LOCTEXT("ToolsSubmenu", "Tools"),
+		LOCTEXT("ToolsSubmenuDescription", "External tools and helpers"),
+		FNewMenuDelegate::CreateRaw(this, &FStarshipHeroModule::AddMenuEntry)
+	);
+}
+
 void FStarshipHeroModule::AddMenuEntry(FMenuBuilder& Builder)
 {
 	Builder.AddMenuEntry(
-		LOCTEXT("OpenSlateDemo", "Open Slate Demo"),
-		LOCTEXT("OpenSlateDemoDescription", "Launches the built-in Starship Test Suite (Slate Widget Gallery)"),
+		LOCTEXT("OpenStarshipSuite", "Open StarshipSuite"),
+		LOCTEXT("OpenStarshipSuiteDescription", "Launches the built-in Starship Test Suite"),
 		FSlateIcon(),
 		FUIAction(FExecuteAction::CreateLambda([]() {
 #if !UE_BUILD_SHIPPING
