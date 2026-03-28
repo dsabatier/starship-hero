@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"FriendlyName": "Slate Reference Hero",
+	"FriendlyName": "Starship Hero",
 	"Description": "A plugin to easily access Slate Reference / Widget Gallery",
 	"Category": "UI",
 	"CreatedBy": "User",
@@ -16,7 +16,7 @@
 	"Installed": false,
 	"Modules": [
 		{
-			"Name": "SlateReferenceHero",
+			"Name": "StarshipHero",
 			"Type": "Editor",
 			"LoadingPhase": "Default"
 		}

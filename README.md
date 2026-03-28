@@ -1,4 +1,4 @@
-# Slate Reference Hero
+# Starship Hero
 
 A lightweight Unreal Engine editor plugin that adds a direct shortcut to the built-in Slate Widget Gallery (Slate Surveyor).
 
@@ -11,7 +11,7 @@ A lightweight Unreal Engine editor plugin that adds a direct shortcut to the bui
    ├── Content/
    ├── Source/
    ├── Plugins/
-   │   └── SlateReferenceHero/
+   │   └── StarshipHero/
    └── YourProject.uproject
    ```
 3. Restart Unreal Engine.

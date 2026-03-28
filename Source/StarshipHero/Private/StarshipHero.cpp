@@ -1,11 +1,13 @@
-#include "SlateReferenceHero.h"
+#include "StarshipHero.h"
 #include "LevelEditor.h"
 #include "Framework/MultiBox/MultiBoxBuilder.h"
 #include "Framework/Docking/TabManager.h"
+#include "Widgets/Testing/SStarshipSuite.h"
+#include "Widgets/Testing/STestSuite.h"
 
-#define LOCTEXT_NAMESPACE "FSlateReferenceHeroModule"
+#define LOCTEXT_NAMESPACE "FStarshipHeroModule"
 
-void FSlateReferenceHeroModule::StartupModule()
+void FStarshipHeroModule::StartupModule()
 {
 	FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
 	TSharedPtr<FExtender> MenuExtender = MakeShareable(new FExtender());
@@ -14,28 +16,30 @@ void FSlateReferenceHeroModule::StartupModule()
 		"WindowLayout", // Extension hook
 		EExtensionHook::After,
 		nullptr,
-		FMenuExtensionDelegate::CreateRaw(this, &FSlateReferenceHeroModule::AddMenuEntry)
+		FMenuExtensionDelegate::CreateRaw(this, &FStarshipHeroModule::AddMenuEntry)
 	);
 
 	LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
 }
 
-void FSlateReferenceHeroModule::ShutdownModule()
+void FStarshipHeroModule::ShutdownModule()
 {
 }
 
-void FSlateReferenceHeroModule::AddMenuEntry(FMenuBuilder& Builder)
+void FStarshipHeroModule::AddMenuEntry(FMenuBuilder& Builder)
 {
 	Builder.AddMenuEntry(
 		LOCTEXT("OpenSlateDemo", "Open Slate Demo"),
-		LOCTEXT("OpenSlateDemoDescription", "Launches the built-in Slate Widget Gallery"),
+		LOCTEXT("OpenSlateDemoDescription", "Launches the built-in Starship Test Suite (Slate Widget Gallery)"),
 		FSlateIcon(),
 		FUIAction(FExecuteAction::CreateLambda([]() {
-			FGlobalTabmanager::Get()->TryInvokeTab(FTabId("SlateSurveyor")); 
+#if !UE_BUILD_SHIPPING
+			RestoreStarshipSuite();
+#endif
 		}))
 	);
 }
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(FSlateReferenceHeroModule, SlateReferenceHero)
+IMPLEMENT_MODULE(FStarshipHeroModule, StarshipHero)

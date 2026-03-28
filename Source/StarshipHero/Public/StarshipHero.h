@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
-class FSlateReferenceHeroModule : public IModuleInterface
+class FStarshipHeroModule : public IModuleInterface
 {
 public:
 

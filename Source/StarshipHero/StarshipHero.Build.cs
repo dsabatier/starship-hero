@@ -1,8 +1,8 @@
 using UnrealBuildTool;
 
-public class SlateReferenceHero : ModuleRules
+public class StarshipHero : ModuleRules
 {
-	public SlateReferenceHero(ReadOnlyTargetRules Target) : base(Target)
+	public StarshipHero(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
@@ -39,7 +39,8 @@ public class SlateReferenceHero : ModuleRules
                 "InputCore",
                 "UnrealEd",
                 "LevelEditor",
-                "Projects"
+                "Projects",
+                "AppFramework"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
